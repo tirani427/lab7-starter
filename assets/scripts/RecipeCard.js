@@ -10,7 +10,7 @@ class RecipeCard extends HTMLElement {
 		// A1. TODO - Attach the shadow DOM to this Web Component (leave the mode open)
 		let shadowEl = this.attachShadow({mode: 'open'});
 		// A2. TODO - Create an <article> element - This will hold our markup once our data is set
-		let articleEl = document.createElement('article');
+		this.articleEl = document.createElement('article');
 		// A3. TODO - Create a style element - This will hold all of the styles for the Web Component
 		let styleEl = document.createElement('style');
 		// A4. TODO - Insert all of the styles from cardTemplate.html into the <style> element you just made (copy everything INSIDE the <style> tag>)
@@ -91,8 +91,8 @@ class RecipeCard extends HTMLElement {
 			font-size: 12px;
 		  }`;
 		// A5. TODO - Append the <style> and <article> elements to the Shadow DOM
-		shadowEl.appendChild(articleEl);
 		shadowEl.appendChild(styleEl);
+		shadowEl.appendChild(this.articleEl);
 	}
 
 	/**
@@ -123,6 +123,25 @@ class RecipeCard extends HTMLElement {
 		// A6. TODO - Select the <article> we added to the Shadow DOM in the constructor
 		const article = this.articleEl;
 		// A7. TODO - Set the contents of the <article> with the <article> template given in
+		let star_pic = "";
+		if(data.rating == 0){
+			star_pic = "/assets/images/icons/0-star.svg";
+		}
+		else if(data.rating == 1){
+			star_pic = "/assets/images/icons/1-star.svg";
+		}
+		else if(data.rating == 2){
+			star_pic = "/assets/images/icons/2-star.svg";
+		}
+		else if(data.rating == 3){
+			star_pic = "/assets/images/icons/3-star.svg";
+		}
+		else if(data.rating == 4){
+			star_pic = "/assets/images/icons/4-star.svg";
+		}
+		else{
+			star_pic = "/assets/images/icons/5-star.svg";
+		}
 		article.innerHTML = `
 		<img src= ${data.imgSrc}
 			alt=${data.imgAlt}>
@@ -132,7 +151,7 @@ class RecipeCard extends HTMLElement {
 		<p class="organization">${data.organization}</p>
 		<div class="rating">
 			<span>${data.rating}</span>
-			<img src="/assets/images/icons/5-star.svg" alt="5 stars">
+			<img src=${star_pic} alt="5 stars">
 			<span>${data.numRatings}</span>
 		</div>
 		<time>${data.lengthTime}</time>
