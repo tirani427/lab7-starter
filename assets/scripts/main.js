@@ -75,7 +75,7 @@ function initFormHandler() {
 	//            submit button is clicked
 	const submit_button = document.getElementByType('submit');
 	submit_button.addEventListener("click", () => {
-		const new_form_data = new FormData(form_element);
+		const new_form_data = new FormData(form_element, submit_button);
 		let recipeObject = new_form_data.keys;
 		let recipe_card = document.createElement('recipe-card');
 		recipe_card.data = {recipeObject};
