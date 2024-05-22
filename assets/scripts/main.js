@@ -85,6 +85,9 @@ function initFormHandler() {
 		const recipes_array = JSON.parse(recipes_array_stringified);
 		recipes_array.push(recipe_card);
 		saveRecipesToStorage(recipes_array);
+		const recipes_array_string = localStorage.getItem('recipes');
+		const new_recipes_array = JSON.parse(recipes_array_string);
+		addRecipesToDocument(new_recipes_array);
 	} );
 
 	const clear_button = document.getElementsByClassName("danger");
